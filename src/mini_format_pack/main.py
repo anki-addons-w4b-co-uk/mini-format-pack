@@ -11,11 +11,36 @@ Copyright: (c) 2014-2018 Stefan van den Akker <neftas@protonmail.com>
 License: GNU AGPLv3 <https://www.gnu.org/licenses/agpl.html>
 """
 
-
+import html
 from aqt import mw
 from aqt.qt import *
+from aqt.utils import getOnlyText
 from anki.hooks import addHook
+from anki.lang import _
 from anki.utils import isWin, isMac
+from aqt.gui_hooks import (
+    profile_did_open,
+    profile_will_close,
+
+    editor_did_init_shortcuts,
+    editor_did_init_buttons,
+    editor_will_show_context_menu,
+)
+from PyQt5.QtCore import (
+    Qt,
+)
+from PyQt5.QtGui import (
+    QCursor,
+    QIcon,
+    QKeySequence,
+)
+from PyQt5.QtWidgets import (
+    QAction,
+    QApplication,
+    QMenu,
+    QShortcut,
+)
+
 
 from .consts import addon_path
 
@@ -44,12 +69,78 @@ def indent(editor):
     editor.web.eval("setFormat('indent')")
 
 
+def insertTab(editor):
+    editor.web.eval("setFormat('inserthtml', '&emsp;')")
+
+
 def outdent(editor):
     editor.web.eval("setFormat('outdent')")
 
 
+def formatAbbr(editor):
+    text = html.escape(getOnlyText(_("Full name:"), default=""))
+    if not text:
+        return
+    editor.web.eval("""wrap("<abbr title='{}'>", "</abbr>")""".format(text))
+
+
 def formatBlockPre(editor):
     editor.web.eval("setFormat('formatBlock', 'pre')")
+
+
+def formatCode(editor):
+    editor.web.eval("wrap('<code><font color=\"#000\">', '</font></code>')")
+
+
+def formatCodeComment(editor):
+    editor.web.eval(
+        "wrap('<code><font color=\"#95a5a6\"><i>//', '</i></font></code>')")
+
+
+def formatCodeKeyword(editor):
+    editor.web.eval(
+        "wrap('<code><font color=\"#234e99\"><b>', '</b></font></code>')")
+
+
+def formatCodeKeywordLite(editor):
+    editor.web.eval("wrap('<code><font color=\"#289\">', '</font></code>')")
+
+
+def formatCodeKeywordLiteBold(editor):
+    editor.web.eval(
+        "wrap('<code><font color=\"#289\"><b>', '</b></font></code>')")
+
+
+def formatCodeNumber(editor):
+    editor.web.eval("wrap('<code><font color=\"#99234e\">', '</font></code>')")
+
+
+def formatCodeQuotedString(editor):
+    editor.web.eval(
+        "wrap('<code><font color=\"#23996d\">\"', '\"</font></code>')")
+
+
+def formatCodeString(editor):
+    editor.web.eval("wrap('<code><font color=\"#23996d\">', '</font></code>')")
+
+
+def fontBigger(editor):
+    modifiers = QApplication.keyboardModifiers()
+    if (modifiers & Qt.ShiftModifier):
+        editor.web.eval(
+            "wrap('<span style=\"font-size: 1.2em\">', '</span><br>')")
+    else:
+        editor.web.eval(
+            "wrap('<span style=\"font-size: 1.2em\">', '</span>')")
+
+
+def fontSmaller(editor):
+    modifiers = QApplication.keyboardModifiers()
+    if (modifiers & Qt.ShiftModifier):
+        editor.web.eval(
+            "wrap('<span style=\"font-size: 0.8em\">', '</span><br>')")
+    else:
+        editor.web.eval("wrap('<span style=\"font-size: 0.8em\">', '</span>')")
 
 
 def insertHorizontalRule(editor):
@@ -154,11 +245,45 @@ def onLoadNote(editor):
     setupBackgroundButton(editor)
 
 
+def show_more_options(editor):
+    pos = QCursor.pos()
+    pos.setX(pos.x() - 25)
+    pos.setY(pos.y() + 15)
+    submenu.exec_(pos)
+
+
+def setup_more_shortcuts(editor):
+    submenu_items = getConfig().get("sub-menu", None)
+    global submenu
+    submenu = QMenu(editor.mw)
+    submenu.hide()
+    for action in submenu_items:
+        try:
+            name = action["name"]
+            tooltip = action["tooltip"]
+            hotkey = action["hotkey"]
+        except KeyError:
+            print("Simple Format Pack sub-menu: Action not configured properly:", action)
+            continue
+        icon = QIcon(os.path.join(addon_path, "icons", "{}.png".format(name)))
+        a = submenu.addAction(icon, "{} ({})".format(tooltip, hotkey))
+        a.setShortcut = hotkey
+        a.triggered.connect(lambda _, n=name, e=editor: globals().get(n)(e))
+        QShortcut(QKeySequence(hotkey), editor.parentWindow,
+                  activated=lambda n=name, e=editor: globals().get(n)(e))
+
+
 def onSetupButtons(buttons, editor):
     """Add buttons to Editor for Anki 2.1.x"""
 
     actions = getConfig().get("actions", None)
 
+    setup_more_shortcuts(editor)
+
+    buttons.append(editor.addButton(os.path.join(addon_path, "icons", "more_rotated.png"),
+                                    "more formatting options",
+                                    show_more_options,
+                                    tip="more formatting options"))
     if not actions:
         return buttons
 
@@ -184,7 +309,6 @@ def onSetupButtons(buttons, editor):
                                  tip="{} ({})".format(tooltip, hotkey),
                                  label="" if icon_path else label,
                                  keys=hotkey)
-
         buttons.append(b)
 
     return buttons

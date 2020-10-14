@@ -1,71 +1,131 @@
 {
-    "actions": [
+    "actions": [{
+            "hotkey": "ctrl+up",
+            "name": "fontBigger",
+            "tooltip": "Increase font 20%"
+        },
         {
+            "hotkey": "ctrl+down",
+            "name": "fontSmaller",
+            "tooltip": "Decrease font 20%"
+        },
+        {
+            "hotkey": "alt+z",
+            "name": "formatAbbr",
+            "tooltip": "Format to abbreviation"
+        },
+        {
+            "hotkey": "alt+shift+t",
+            "name": "insertTab",
+            "tooltip": "Insert tab"
+        },
+        {
+            "hotkey": "alt+shift+5",
             "name": "strikeThrough",
-            "tooltip": "Apply strikethrough",
-            "hotkey": "alt+shift+5"
+            "tooltip": "Apply strikethrough"
         },
         {
-            "name": "onBackground",
-            "tooltip": "Highlight text",
+            "custom": true,
             "hotkey": "ctrl+shift+b",
-            "custom": true
+            "name": "onBackground",
+            "tooltip": "Highlight text"
         },
         {
-            "name": "onChangeBgCol",
-            "tooltip": "Change highlight color",
             "hotkey": "ctrl+shift+n",
-            "label": "▼"
+            "label": "▼",
+            "name": "onChangeBgCol",
+            "tooltip": "Change highlight color"
         },
         {
-            "name": "formatBlockPre",
-            "tooltip": "Insert code block",
-            "hotkey": "ctrl+."
-        },
-        {
+            "hotkey": "ctrl+shift+alt+_",
             "name": "insertHorizontalRule",
-            "tooltip": "Insert horizontal line",
-            "hotkey": "ctrl+shift+alt+_"
+            "tooltip": "Insert horizontal line"
         },
         {
+            "hotkey": "ctrl+[",
             "name": "insertUnorderedList",
-            "tooltip": "Toggle unordered list",
-            "hotkey": "ctrl+["
+            "tooltip": "Toggle unordered list"
         },
         {
+            "hotkey": "ctrl+]",
             "name": "insertOrderedList",
-            "tooltip": "Toggle ordered list",
-            "hotkey": "ctrl+]"
+            "tooltip": "Toggle ordered list"
         },
         {
+            "hotkey": "ctrl+shift+]",
             "name": "indent",
-            "tooltip": "Indent",
-            "hotkey": "ctrl+shift+]"
+            "tooltip": "Indent"
         },
         {
+            "hotkey": "ctrl+shift+[",
             "name": "outdent",
-            "tooltip": "Outdent",
-            "hotkey": "ctrl+shift+["
+            "tooltip": "Outdent"
         },
         {
+            "hotkey": "ctrl+shift+alt+s",
             "name": "justifyCenter",
-            "tooltip": "Center text",
-            "hotkey": "ctrl+shift+alt+s"
+            "tooltip": "Center text"
         },
         {
+            "hotkey": "ctrl+shift+alt+l",
             "name": "justifyLeft",
-            "tooltip": "Align text to the left",
-            "hotkey": "ctrl+shift+alt+l"
+            "tooltip": "Align text to the left"
         },
         {
+            "hotkey": "ctrl+shift+alt+r",
             "name": "justifyRight",
-            "tooltip": "Align text to the right",
-            "hotkey": "ctrl+shift+alt+r"
+            "tooltip": "Align text to the right"
         },
         {
+            "hotkey": "ctrl+shift+alt+b",
             "name": "justifyFull",
-            "tooltip": "Justify text",
-            "hotkey": "ctrl+shift+alt+b"
+            "tooltip": "Justify text"
+        }
+    ],
+    "sub-menu": [{
+            "hotkey": "ctrl+.",
+            "name": "formatBlockPre",
+            "tooltip": "Insert code block"
+        },
+        {
+            "hotkey": "alt+`",
+            "name": "formatCode",
+            "tooltip": "Format to code"
+        },
+        {
+            "hotkey": "alt+c",
+            "name": "formatCodeComment",
+            "tooltip": "Format to comment"
+        },
+        {
+            "hotkey": "alt+q",
+            "name": "formatCodeKeyword",
+            "tooltip": "Format to keyword"
+        },
+        {
+            "hotkey": "alt+w",
+            "name": "formatCodeKeywordLite",
+            "tooltip": "Format to keyword lite"
+        },
+        {
+            "hotkey": "alt+d",
+            "name": "formatCodeKeywordLiteBold",
+            "tooltip": "Format to enboldened keyword lite "
+        },
+        {
+            "hotkey": "alt+1",
+            "name": "formatCodeNumber",
+            "tooltip": "Format to number"
+        },
+        {
+            "hotkey": "alt+2",
+            "name": "formatCodeQuotedString",
+            "tooltip": "Format to quoted string"
+        },
+        {
+            "hotkey": "alt+t",
+            "name": "formatCodeString",
+            "tooltip": "Format to string"
         }
     ]
 }
