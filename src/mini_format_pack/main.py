@@ -124,6 +124,10 @@ def formatCodeString(editor):
     editor.web.eval("wrap('<code><font color=\"#23996d\">', '</font></code>')")
 
 
+def formatKeyboard(editor):
+    editor.web.eval("wrap('<kbd>', '</kbd>')")
+
+
 def fontBigger(editor):
     modifiers = QApplication.keyboardModifiers()
     if (modifiers & Qt.ShiftModifier):

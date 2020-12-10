@@ -88,6 +88,11 @@
             "tooltip": "Insert code block"
         },
         {
+            "hotkey": "ctrl+`",
+            "name": "formatKeyboard",
+            "tooltip": "Format to kbd"
+        },
+        {
             "hotkey": "alt+`",
             "name": "formatCode",
             "tooltip": "Format to code"
