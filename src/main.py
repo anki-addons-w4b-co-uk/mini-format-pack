@@ -166,24 +166,25 @@ def justifyRight(editor):
 def justifyFull(editor):
     editor.web.eval("setFormat('justifyFull');")
 
+def resetColorsToInherit(editor):
+    editor.web.eval("setFormat('forecolor', '#000');")
+    _wrapWithBgColour(editor, 'inherit')
 
 # Special format functions
 
 # Background colour
 ######################################################################
 
-def setupBackgroundButton(editor):
-    editor.bcolour = editor.mw.pm.profile.get("lastBgColor", "#00f")
-    onBgColourChanged(editor)
-
-# use last colour
-
+def _updateBackgroundButton(editor):
+    editor.web.eval(
+        """$("#backcolor")[0].style.backgroundColor = '%s'""" % editor.bcolour)
 
 def onBackground(editor):
     _wrapWithBgColour(editor, editor.bcolour)
 
-# choose new colour
-
+def onBgColourChanged(editor):
+    _updateBackgroundButton(editor)
+    editor.mw.pm.profile['lastBgColor'] = editor.bcolour
 
 def onChangeBgCol(editor):
     new = QColorDialog.getColor(QColor(editor.bcolour), None)
@@ -194,24 +195,14 @@ def onChangeBgCol(editor):
         onBgColourChanged(editor)
         _wrapWithBgColour(editor, editor.bcolour)
 
-
-def _updateBackgroundButton(editor):
-    editor.web.eval(
-        """$("#backcolor")[0].style.backgroundColor = '%s'""" % editor.bcolour)
-
-
-def onBgColourChanged(editor):
-    _updateBackgroundButton(editor)
-    editor.mw.pm.profile['lastBgColor'] = editor.bcolour
+def setupBackgroundButton(editor):
+    editor.bcolour = editor.mw.pm.profile.get("lastBgColor", "#00f")
+    onBgColourChanged(editor)
 
 
 def _wrapWithBgColour(editor, color):
-    """
-    Wrap the selected text in an appropriate tag with a background color.
-    """
     # On Linux, the standard 'hiliteColor' method works. On Windows and OSX
     # the formatting seems to get filtered out
-
     editor.web.eval("""
         if (!setFormat('hiliteColor', '%s')) {
             setFormat('backcolor', '%s');
@@ -230,6 +221,7 @@ def _wrapWithBgColour(editor, color):
 
 
 # UI element creation
+######################################################################
 
 def createCustomButton(editor, name, tooltip, hotkey, method):
     if name == "onBackground":
@@ -244,6 +236,7 @@ def createCustomButton(editor, name, tooltip, hotkey, method):
 
 
 # Hooks
+######################################################################
 
 def onLoadNote(editor):
     setupBackgroundButton(editor)
