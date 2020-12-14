@@ -36,7 +36,7 @@
             "tooltip": "Outdent"
         },
         {
-            "hotkey": "alt+x",
+            "hotkey": "F4",
             "name": "resetColorsToInherit",
             "tooltip": "colors->inherit"
         }
