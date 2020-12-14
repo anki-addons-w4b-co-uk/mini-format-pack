@@ -138,6 +138,12 @@
             "label": "▼",
             "name": "onChangeBgCol",
             "tooltip": "Change highlight color"
+        },
+        {
+            "hotkey": "F5",
+            "label": "|",
+            "name": "insertPipeSeparator",
+            "tooltip": "insert pipe | separator"
         }
    ]
 }

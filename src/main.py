@@ -150,6 +150,9 @@ def fontSmaller(editor):
 def insertHorizontalRule(editor):
     editor.web.eval("setFormat('insertHorizontalRule')")
 
+def insertPipeSeparator(editor):
+    editor.web.eval("wrap('', ' | ')")
+
 
 def justifyCenter(editor):
     editor.web.eval("setFormat('justifyCenter');")
