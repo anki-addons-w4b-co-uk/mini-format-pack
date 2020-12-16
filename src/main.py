@@ -319,6 +319,12 @@ def onSetupButtons(buttons, editor):
 
     return buttons
 
+def on_setup_editor_context_menu(view, menu):
+    a = menu.addAction('edit HTML')
+    a.triggered.connect(lambda _, e=view.editor: e.onHtmlEdit())
+    return
+
 
 addHook("loadNote", onLoadNote)
 addHook("setupEditorButtons", onSetupButtons)
+addHook("EditorWebView.contextMenuEvent", on_setup_editor_context_menu)
