@@ -68,6 +68,16 @@
             "tooltip": "Format to kbd"
         },
         {
+            "hotkey": "",
+            "name": "mainPoint",
+            "tooltip": "Format as main point"
+        },
+        {
+            "hotkey": "",
+            "name": "secondaryPoint",
+            "tooltip": "Format as secondary point"
+        },
+        {
             "hotkey": "alt+`",
             "name": "formatCode",
             "tooltip": "Format to code"

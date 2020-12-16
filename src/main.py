@@ -46,7 +46,6 @@ from .consts import addon_path
 
 # Config
 
-
 def getConfig():
     return mw.addonManager.getConfig(__name__)
 
@@ -169,9 +168,15 @@ def justifyRight(editor):
 def justifyFull(editor):
     editor.web.eval("setFormat('justifyFull');")
 
+def mainPoint(editor):
+    editor.web.eval("wrap('<div class=\"main-point\"><span class=\"main-point\">', '</span></div>')")
+
 def resetColorsToInherit(editor):
     editor.web.eval("setFormat('forecolor', '#000');")
     _wrapWithBgColour(editor, 'inherit')
+
+def secondaryPoint(editor):
+    editor.web.eval("wrap('<div class=\"secondary-point\"><span class=\"secondary-point\">', '</span></div>')")
 
 # Special format functions
 
@@ -284,6 +289,7 @@ def onSetupButtons(buttons, editor):
                                     "more formatting options",
                                     show_more_options,
                                     tip="more formatting options"))
+
     if not actions:
         return buttons
 
