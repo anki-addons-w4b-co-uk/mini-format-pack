@@ -150,7 +150,10 @@ def insertHorizontalRule(editor):
     editor.web.eval("setFormat('insertHorizontalRule')")
 
 def insertPipeSeparator(editor):
-    editor.web.eval("wrap('', ' | ')")
+    field_index = editor.currentField
+    editor.note.fields[field_index] = editor.note.fields[field_index] + ' | '
+    editor.setNote(editor.note)
+    editor.web.eval("focusField(%d);" % field_index)
 
 
 def justifyCenter(editor):
