@@ -129,9 +129,9 @@ def formatKeyboard(editor):
 
 def fontBigger(editor):
     modifiers = QApplication.keyboardModifiers()
-    if (modifiers & Qt.ShiftModifier):
+    if modifiers & Qt.ShiftModifier:
         editor.web.eval(
-            "wrap('<span style=\"font-size: 1.2em\">', '</span><br>')")
+            "wrap('<span style=\"font-size: 1.1em\">', '</span><br>')")
     else:
         editor.web.eval(
             "wrap('<span style=\"font-size: 1.2em\">', '</span>')")
@@ -139,9 +139,9 @@ def fontBigger(editor):
 
 def fontSmaller(editor):
     modifiers = QApplication.keyboardModifiers()
-    if (modifiers & Qt.ShiftModifier):
+    if modifiers & Qt.ShiftModifier:
         editor.web.eval(
-            "wrap('<span style=\"font-size: 0.8em\">', '</span><br>')")
+            "wrap('<span style=\"font-size: 0.9em\">', '</span><br>')")
     else:
         editor.web.eval("wrap('<span style=\"font-size: 0.8em\">', '</span>')")
 
@@ -174,12 +174,18 @@ def justifyFull(editor):
 def mainPoint(editor):
     editor.web.eval("wrap('<div class=\"main-point\"><span class=\"main-point\">', '</span></div>')")
 
+def note(editor):
+    editor.web.eval("wrap('<div class=\"note\">', '</div>')")
+
 def resetColorsToInherit(editor):
     editor.web.eval("setFormat('forecolor', '#000');")
     _wrapWithBgColour(editor, 'inherit')
 
 def secondaryPoint(editor):
     editor.web.eval("wrap('<div class=\"secondary-point\"><span class=\"secondary-point\">', '</span></div>')")
+
+def warning(editor):
+    editor.web.eval("wrap('<div class=\"warning\">', '</div>')")
 
 # Special format functions
 

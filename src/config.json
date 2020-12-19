@@ -78,6 +78,16 @@
             "tooltip": "Format as secondary point"
         },
         {
+            "hotkey": "",
+            "name": "note",
+            "tooltip": "Format as note"
+        },
+        {
+            "hotkey": "",
+            "name": "warning",
+            "tooltip": "Format as warning"
+        },
+        {
             "hotkey": "alt+`",
             "name": "formatCode",
             "tooltip": "Format to code"
