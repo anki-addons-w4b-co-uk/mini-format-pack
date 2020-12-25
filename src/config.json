@@ -110,7 +110,7 @@
         {
             "hotkey": "alt+d",
             "name": "formatCodeKeywordLiteBold",
-            "tooltip": "Format to enboldened keyword lite "
+            "tooltip": "Format to emboldened keyword lite "
         },
         {
             "hotkey": "alt+1",
@@ -147,7 +147,7 @@
             "name": "justifyFull",
             "tooltip": "Justify text"
         },
-       {
+        {
             "custom": true,
             "hotkey": "ctrl+shift+b",
             "name": "onBackground",
@@ -164,6 +164,16 @@
             "label": "|",
             "name": "insertPipeSeparator",
             "tooltip": "insert pipe | separator"
+        },
+        {
+            "hotkey": "",
+            "name": "insertDeprecatedIcon",
+            "tooltip": "Insert deprecated icon"
+        },
+        {
+            "hotkey": "",
+            "name": "insertExperimentalIcon",
+            "tooltip": "Insert experimental icon"
         }
    ]
 }

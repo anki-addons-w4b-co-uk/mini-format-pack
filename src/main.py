@@ -146,15 +146,17 @@ def fontSmaller(editor):
         editor.web.eval("wrap('<span style=\"font-size: 0.8em\">', '</span>')")
 
 
+def insertDeprecatedIcon(editor):
+    editor.web.eval("setFormat('inserthtml', '<img src=\"deprecated.png\" title=\"This API is deprecated and while some browsers may still support it, it should not be used in production code.\" /> ')")
+
+def insertExperimentalIcon(editor):
+    editor.web.eval("setFormat('inserthtml', '<img src=\"experimental.png\" title=\"This API is experimental and should not be used in production.\">')")
+
 def insertHorizontalRule(editor):
     editor.web.eval("setFormat('insertHorizontalRule')")
 
 def insertPipeSeparator(editor):
-    field_index = editor.currentField
-    editor.note.fields[field_index] = editor.note.fields[field_index] + ' | '
-    editor.setNote(editor.note)
-    editor.web.eval("focusField(%d);" % field_index)
-
+    editor.web.eval("setFormat('inserthtml', ' | ')")
 
 def justifyCenter(editor):
     editor.web.eval("setFormat('justifyCenter');")
