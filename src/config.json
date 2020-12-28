@@ -174,6 +174,11 @@
             "hotkey": "",
             "name": "insertExperimentalIcon",
             "tooltip": "Insert experimental icon"
+        },
+        {
+            "hotkey": "",
+            "name": "insertObsoleteIcon",
+            "tooltip": "Insert obsolete icon"
         }
    ]
 }
