@@ -177,6 +177,11 @@
         },
         {
             "hotkey": "",
+            "name": "insertNonStandardIcon",
+            "tooltip": "Insert non-standard icon"
+        },
+        {
+            "hotkey": "",
             "name": "insertObsoleteIcon",
             "tooltip": "Insert obsolete icon"
         }

@@ -155,11 +155,14 @@ def insertExperimentalIcon(editor):
 def insertHorizontalRule(editor):
     editor.web.eval("setFormat('insertHorizontalRule')")
 
+def insertNonStandardIcon(editor):
+    editor.web.eval("setFormat('inserthtml', '<img src=\"non-standard.png\" title=\"This API has not been standardised.\">')")
+
 def insertObsoleteIcon(editor):
     editor.web.eval("setFormat('inserthtml', '<img src=\"obsolete.png\" title=\"This API is obsolete and no longer guaranteed to work, it should not be used in production code.\">')")
 
 def insertPipeSeparator(editor):
-    editor.web.eval("setFormat('inserthtml', ' | ')")
+    editor.web.eval("setFormat('inserthtml', '|')")
 
 def justifyCenter(editor):
     editor.web.eval("setFormat('justifyCenter');")
